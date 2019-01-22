@@ -2,16 +2,16 @@
 require_once 'dbsetings.php'; // подключаем файл с юзером и паролем для базы данных
 $dbhost = 'localhost'; //адрес базы данных
 $dbname = 'vasjeninest'; // название базы данных
-$dbuser = $dbu; // взято с dbsettings
-$dbpass = $dbp; // взято с dbsettings
+$dbuser = 'root'; // взято с dbsettings
+$dbpass = '' ; // взято с dbsettings
 $appname = "Vasjeni's Nest";
 
-$connection = new mysqli($dbhost, $dbuser, $dbpass, $dbpass);
+$connection = new mysqli($dbhost, $dbuser, $dbpass, $dbname);
 if ($connection->connect_error) die ($connection->connect_error);
 
 function createTable ($name, $query )
 {
-    queryMysql("CREATE TABLE IF NOT EXIST $name($query)");
+    queryMysql("CREATE TABLE IF NOT EXISTS $name($query)");
     echo "Таблица '$name' создана или уже существует <bd>";
 }
 
@@ -45,7 +45,7 @@ function showProfile ($user)
         echo "<img src='$user.jpg' align='left'>";
 }
 
-$result = queryMysql("SELECT * FROM profile WHERE user='$user'");
+$result = queryMysql("SELECT * FROM profiles WHERE user='$user'");
 
 if ($result->num_rows)
 {
