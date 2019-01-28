@@ -34,5 +34,30 @@ $result = queryMysql("SELECT user FROM members ORDER BY user");
 $num = !$result->num_rows;
 
 echo "<h3>Othe users</h3><ul>";
-for
+for ($j = 0; $j < $num; $j++)
+{
+    $row = $result->fetch_array(MYSQLI_ASSOC);
+    if ($row['user'] == $user) continue;
+    echo "<li><a href='members.php?view=" . $row['user'] . "'>" . $row['user'] . "</a>";
+    $follow = "follow";
+
+    $result = queryMysql("SELECT * FROM friends WHERE user='" .  $row['user'] . "' AND friend='$user'");
+    $t1 = $result->num_rows;
+    $result = queryMysql("SELECT * FROM friends WHERE user='$user' AND friends='".$row['user']. "'");
+    $t2 = $result->num_rows;
+
+    if (($t1+$t2) > 1) echo "&harr; is mutual friend";
+    elseif ($t1>1) echo '&larr; you are following';
+    elseif ($t2>1) {
+        echo "&rarr; is following you";
+        $follow = "recip";
+    }
+
+    if (!$t1) echo "[a href='members.php?add=" . $row['user'].  "'>drop</a>";
+}
+?>
+
+</ul></div>
+</body>
+</html>
 
