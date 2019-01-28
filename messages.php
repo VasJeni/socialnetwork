@@ -54,10 +54,21 @@ _END;
             echo "<a href='message.php?view=$row[1]'>$row[1]</a> ";
 
             if ($row['pm'] == 0)
-                echo "wrote: &quot;$row['message']&quot; ";
+                echo "wrote: &quot;" . $row['message'] . "&quot; ";
+            else echo "whispered: <span class='whispered'>&quot;" . $row['message'] . "&quot; </span>";
+
+            if ($row['recip'] == $user )
+                echo "[<a href='message.php?view=$view&erase=".$row['id']. "'>erase</a>]";
+
+            echo "<br>";
         }
     }
-
-
-
 }
+if (!$num) echo "<br><span class='info'>No message yet</span><br><br>";
+echo "<br> <a class='button' href='messages.php?view=$view'>Refresh messages</a>" .
+            "<a class='button' href='friends.php?view=$viev'>View $name2 friends</a>";
+?>
+<br></div>
+</body>
+</html>
+
