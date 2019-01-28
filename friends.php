@@ -73,4 +73,3 @@ echo "<a class='button' href='members.php?view=$view'>$view View $name2 massages
 </div><br>
 </body>
 </html>
-
