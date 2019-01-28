@@ -1,5 +1,4 @@
 <?php
-require_once 'dbsetings.php'; // подключаем файл с юзером и паролем для базы данных
 $dbhost = 'localhost'; //адрес базы данных
 $dbname = 'vasjeninest'; // название базы данных
 $dbuser = 'root'; // взято с dbsettings
