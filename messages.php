@@ -28,7 +28,7 @@ if ($view = '')
     showProfile($view);
 
     echo <<<_END
-    <form method="POST" action='messages.php?view=$view'>
+    <form method="POST" action='message.php?view=$view'>
     type here text to leave a message:<br>
     <textarea name="text" cols="40" rows="3"></textarea><br>
 Public <input type="radio" name="pm" value="0" checked="checked">
@@ -51,12 +51,26 @@ _END;
         if ($row[3] == 0 || $row[1] == $user || $row[2] == $user)
         {
             echo date('M jS\'y g:ia', $row[4]);
-            echo "<a href='messages.php?view=$row[1]'>$row[1]</a> ";
+            echo "<a href='message.php?view=$row[1]'>$row[1]</a> ";
 
             if ($row['pm'] == 0)
-                echo "wrote: &quot;" . $row['message']. "&quot;";
+                echo "wrote: &quot;" . $row['message'] . "&quot; ";
+            else echo "whispered: <span class='whispered'>&quot;" . $row['message'] . "&quot; </span>";
+
+            if ($row['recip'] == $user )
+                echo "[<a href='message.php?view=$view&erase=".$row['id']. "'>erase</a>]";
+
+            echo "<br>";
         }
     }
+}
+if (!$num) echo "<br><span class='info'>No message yet</span><br><br>";
+echo "<br> <a class='button' href='messages.php?view=$view'>Refresh messages</a>" .
+            "<a class='button' href='friends.php?view=$viev'>View $name2 friends</a>";
+?>
+<br></div>
+</body>
+</html>
 
 
 
