@@ -28,7 +28,7 @@ if ($view = '')
     showProfile($view);
 
     echo <<<_END
-    <form method="POST" action='message.php?view=$view'>
+    <form method="POST" action='messages.php?view=$view'>
     type here text to leave a message:<br>
     <textarea name="text" cols="40" rows="3"></textarea><br>
 Public <input type="radio" name="pm" value="0" checked="checked">
@@ -51,10 +51,10 @@ _END;
         if ($row[3] == 0 || $row[1] == $user || $row[2] == $user)
         {
             echo date('M jS\'y g:ia', $row[4]);
-            echo "<a href='message.php?view=$row[1]'>$row[1]</a> ";
+            echo "<a href='messages.php?view=$row[1]'>$row[1]</a> ";
 
             if ($row['pm'] == 0)
-                echo "wrote: &quot;$row['message']&quot; ";
+                echo "wrote: &quot;" . $row['message']. "&quot;";
         }
     }
 

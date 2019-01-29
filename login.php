@@ -19,7 +19,7 @@ if (isset($_POST['user']))
     {
         $error = "Not all fields were entered";
     } else {
-        $result = queryMysql("SELECT user.pass FROM members WHERE user='$user' AND pass='$pass'");
+        $result = queryMysql("SELECT user , pass FROM members WHERE user='$user' AND pass='$pass'");
         if ($result->num_rows=="0")
         {
             $error = "<span class='error'> Invalid username or password </span><br><br>";
@@ -31,7 +31,7 @@ if (isset($_POST['user']))
     }
 }
 echo <<<_END
-<form action=login,php method="POST">$error
+<form action=login.php method="POST">$error
 <span class="fieldname">Username</span><br>
 <input type="text" maxlength="16" name="user" value='$user'><br>
 <span class="fieldname">Password</span><br>

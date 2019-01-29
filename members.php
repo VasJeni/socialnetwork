@@ -14,7 +14,7 @@ if (isset($_GET['view']))
     }
     echo "<h3>$name profile</h3>";
     showProfile($view);
-    echo "<a class='button' href='message.php?view=$view'> View $name messages </a><br><br>";
+    echo "<a class='button' href='messages.php?view=$view'> View $name messages </a><br><br>";
     die("</div></body></html>");
 }
 if (isset($_GET['add']))
@@ -60,4 +60,3 @@ for ($j = 0; $j < $num; $j++)
 </ul></div>
 </body>
 </html>
-
